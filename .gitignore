@@ -1,11 +1,8 @@
 node_modules
+.env
 coverage
 .DS_Store
 .nyc_output
 .idea
-.env
-.vscode
 
-github_token
 helm/**/*.tgz
-jsHelper.js

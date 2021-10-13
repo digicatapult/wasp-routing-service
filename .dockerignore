@@ -1,12 +1,6 @@
-.github
-.nyc_output
-coverage
+.DS_STORE
 node_modules
-scripts
-test
-
-.eslintignore
-.eslintrc
-.nycrc
-.prettierrc
-*.md
+.gitignore
+README.md
+.env
+.git

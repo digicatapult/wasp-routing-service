@@ -1,5 +1,4 @@
 node_modules
+build
 package.json
 coverage
-.nyc_output
-jsHelper.js

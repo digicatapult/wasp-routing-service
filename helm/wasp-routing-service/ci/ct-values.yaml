@@ -1,4 +1,4 @@
 image:
-  repository: 'wasp-service-template'
+  repository: 'wasp-routing-service'
   tag: 'latest'
   PullPolicy: Never
