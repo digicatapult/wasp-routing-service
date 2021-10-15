@@ -1,0 +1,23 @@
+apiVersion: v1
+entries:
+  wasp-routing-service:
+  - apiVersion: v2
+    appVersion: 2.0.4
+    created: "2021-10-15T15:40:06.289270859Z"
+    dependencies:
+    - condition: kafka.enabled
+      name: kafka
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.7.3
+    description: A Helm chart for WASP-ROUTING_SERVICE
+    digest: 320d67dadb26d43181b3535ac881ff3aa886876c5b9bcea46650bef4872975de
+    maintainers:
+    - email: opensource@digicatapult.org.uk
+      name: digicatapult
+      url: www.digicatapult.org.uk
+    name: wasp-routing-service
+    type: application
+    urls:
+    - https://digicatapult.github.io/wasp-routing-service/wasp-routing-service-2.0.4.tgz
+    version: 2.0.4
+generated: "2021-10-15T15:40:06.279892761Z"
