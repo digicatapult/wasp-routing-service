@@ -57,7 +57,7 @@ def producer = new KafkaProducer&lt;&gt;(props);
 
 // 1048576 = 1024 * 1024
 //byte[] bytes = new byte[1048576];
-def byte[] bytes = [&quot;F&quot;] * 1024 * 1024;
+def bytes = (1024 * 1024)
 
 //for (int counter = 0; counter &lt; bytes.length; counter++) {
 //	bytes[counter] = &apos;F&apos; // RandomStringUtils.random(length, charset.toCharArray())
