@@ -6,3 +6,4 @@ coverage
 .idea
 
 helm/**/*.tgz
+jmeter.log
