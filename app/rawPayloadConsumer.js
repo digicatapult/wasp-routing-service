@@ -9,14 +9,12 @@ const {
 
 const setupRawPayloadConsumer = async () => {
   const kafkaLogger = logger.child({ module: 'kafkajs-payloads' }, { level: 'error' })
-  const logCreator =
-    () =>
-    ({ label, log }) => {
-      const { message } = log
-      kafkaLogger[label.toLowerCase()]({
-        message,
-      })
-    }
+  const logCreator = () => ({ label, log }) => {
+    const { message } = log
+    kafkaLogger[label.toLowerCase()]({
+      message,
+    })
+  }
 
   const kafka = new Kafka({
     clientId: 'routing-service-payloads', // TODO: this should be particular to this routing-service
@@ -35,45 +33,48 @@ const setupRawPayloadConsumer = async () => {
   //  TODO: work out correct behaviour here
   await consumer
     .run({
-      eachMessage: async ({ message: { key, value } }) => {
+      eachMessage: async ({ message }) => {
         try {
+          const { key, value } = message
+          console.log('**** Raw payload received for key, value', key, value)
+
           const ingestId = key.toString('utf8')
           logger.debug('Raw payload received for %s', ingestId)
 
           const parsedValue = JSON.parse(value.toString('utf8'))
           logger.trace(`Payload is %j`, parsedValue)
 
-          const { ingest } = parsedValue
+          // const { ingest } = parsedValue
 
-          const thingSearch = await getThings({ ingest, ingestId })
-          if (thingSearch.length !== 1) {
-            throw new InvalidIngestIdError({ ingest, ingestId })
-          }
-          const { id: thingId, type } = thingSearch[0]
-          const topic = `${KAFKA_PAYLOAD_ROUTING_PREFIX}.${type}`
+          // const thingSearch = await getThings({ ingest, ingestId })
+          // if (thingSearch.length !== 1) {
+          //   throw new InvalidIngestIdError({ ingest, ingestId })
+          // }
+          // const { id: thingId, type } = thingSearch[0]
+          // const topic = `${KAFKA_PAYLOAD_ROUTING_PREFIX}.${type}`
+          //
+          // logger.debug('Forwarding payload for %s to %s %j', thingId, topic, {
+          //   key: thingId,
+          //   value: JSON.stringify({
+          //     ...parsedValue,
+          //     thingId,
+          //     type,
+          //   }),
+          // })
 
-          logger.debug('Forwarding payload for %s to %s %j', thingId, topic, {
-            key: thingId,
-            value: JSON.stringify({
-              ...parsedValue,
-              thingId,
-              type,
-            }),
-          })
-
-          await producer.send({
-            topic,
-            messages: [
-              {
-                key: thingId,
-                value: JSON.stringify({
-                  ...parsedValue,
-                  thingId,
-                  type,
-                }),
-              },
-            ],
-          })
+          // await producer.send({
+          //   topic,
+          //   messages: [
+          //     {
+          //       key: thingId,
+          //       value: JSON.stringify({
+          //         ...parsedValue,
+          //         thingId,
+          //         type,
+          //       }),
+          //     },
+          //   ],
+          // })
         } catch (err) {
           logger.warn(`Unexpected error processing payload. Error was ${err.message || err}`)
         }
