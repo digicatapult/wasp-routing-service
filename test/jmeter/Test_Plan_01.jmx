@@ -35,49 +35,38 @@
 import org.apache.kafka.clients.producer.ProducerRecord
 import net.minidev.json.JSONObject
 import net.minidev.json.JSONArray
-//import org.apache.commons.lang3.RandomStringUtils
+import java.nio.file.Files
+import java.nio.file.Paths
 
-def props = new Properties();
-props.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;);
-props.put(&quot;acks&quot;, &quot;0&quot;);
-props.put(&quot;retries&quot;, 0);
-props.put(&quot;batch.size&quot;, 16384);
-props.put(&quot;linger.ms&quot;, 1);
-props.put(&quot;buffer.memory&quot;, 33554432);
-props.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
-props.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;);
+def props = new Properties()
+props.put(&quot;bootstrap.servers&quot;, &quot;localhost:9092&quot;)
+props.put(&quot;acks&quot;, &quot;0&quot;)
+props.put(&quot;retries&quot;, 0)
+props.put(&quot;batch.size&quot;, 16384)
+props.put(&quot;linger.ms&quot;, 1)
+props.put(&quot;buffer.memory&quot;, 33554432)
+props.put(&quot;key.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;)
+props.put(&quot;value.serializer&quot;, &quot;org.apache.kafka.common.serialization.StringSerializer&quot;)
 
-def producer = new KafkaProducer&lt;&gt;(props);
+def producer = new KafkaProducer(props)
 
-//def jsonValue = ${__RandomString(1048576,abcdefghijklmnopqrstuvwxyz,)}
-
-//String charset = ((&apos;A&apos;..&apos;Z&apos;) + (&apos;0&apos;..&apos;9&apos;)).join()
-//Integer length = 1
-//String randomString = RandomStringUtils.random(length, charset.toCharArray())
-
-// 1048576 = 1024 * 1024
-//byte[] bytes = new byte[1048576];
-def bytes = (1024 * 1024)
-
-//for (int counter = 0; counter &lt; bytes.length; counter++) {
-//	bytes[counter] = &apos;F&apos; // RandomStringUtils.random(length, charset.toCharArray())
-//}
+def bytes = new String(Files.readAllBytes(Paths.get(&quot;./test/data/900kb.txt&quot;)))
 
 def messageKey = &quot;321&quot;
 
-JSONObject jsonObject = new JSONObject();
+def jsonObject = new JSONObject()
 jsonObject.put(&quot;video&quot;, bytes.toString())
 
-JSONObject jsonMessage = new JSONObject();
+def jsonMessage = new JSONObject()
 jsonMessage.put(&quot;key&quot;, messageKey)
 jsonMessage.put(&quot;value&quot;, jsonObject.toJSONString())
 
-JSONArray jsonArray = new JSONArray()
+def jsonArray = new JSONArray()
 jsonArray.add(jsonMessage)
 
-producer.send(new ProducerRecord&lt;&gt;(&quot;raw-payloads&quot;, messageKey, jsonArray.toJSONString()));
+producer.send(new ProducerRecord(&quot;raw-payloads&quot;, messageKey, jsonArray.toJSONString()))
 
-producer.close();
+producer.close()
 </stringProp>
           <stringProp name="scriptLanguage">groovy</stringProp>
         </JSR223Sampler>
@@ -117,6 +106,43 @@ producer.close();
         </ResultCollector>
         <hashTree/>
         <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
