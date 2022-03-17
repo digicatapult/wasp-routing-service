@@ -2,19 +2,25 @@
 
 ## Requirements
 JDK 8
-JMETER 5.4.1
+JMeter 5.4.1
 JMETER_HOME added to %PATH
-Thing Service + docker-compose
-Route Service + docker-compose
+Thing Service
+Route Service
 
+## Setup
+### JMeter
 ```
 vi {JMETER_HOME}/bin/setenv.sh
 
 # add the following...
 HEAP="-Xms1g -Xmx4g -XX:MaxMetaspaceSize=256m"
 ```
+The following files are required that each contain a string to the size of:
+1) 100kb
+2) 200kb
+3) 500kb
+4) 900kb
 
-## Setup
 ### Thing Service
 ThingService will need seed data for the thing to be successfully looked up via ingest and ingestId
 ```

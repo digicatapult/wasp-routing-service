@@ -9,12 +9,14 @@ const {
 
 const setupRawPayloadConsumer = async () => {
   const kafkaLogger = logger.child({ module: 'kafkajs-payloads' }, { level: 'error' })
-  const logCreator = () => ({ label, log }) => {
-    const { message } = log
-    kafkaLogger[label.toLowerCase()]({
-      message,
-    })
-  }
+  const logCreator =
+    () =>
+    ({ label, log }) => {
+      const { message } = log
+      kafkaLogger[label.toLowerCase()]({
+        message,
+      })
+    }
 
   const kafka = new Kafka({
     clientId: 'routing-service-payloads', // TODO: this should be particular to this routing-service
