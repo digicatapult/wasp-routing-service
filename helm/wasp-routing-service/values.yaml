@@ -11,5 +11,5 @@ config:
 image:
   repository: ghcr.io/digicatapult/wasp-routing-service
   pullPolicy: IfNotPresent
-  tag: 'v2.0.4'
+  tag: 'v2.0.5'
   pullSecrets: ['ghcr-digicatapult']

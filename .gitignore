@@ -7,3 +7,4 @@ coverage
 
 helm/**/*.tgz
 jmeter.log
+*.hprof
