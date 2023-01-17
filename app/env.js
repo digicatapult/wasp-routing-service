@@ -1,8 +1,10 @@
-const envalid = require('envalid')
-const dotenv = require('dotenv')
+import envalid from 'envalid'
+import dotenv from 'dotenv'
 
 if (process.env.NODE_ENV === 'test') {
   dotenv.config({ path: 'test/test.env' })
+} else {
+  dotenv.config()
 }
 
 const vars = envalid.cleanEnv(
@@ -18,10 +20,10 @@ const vars = envalid.cleanEnv(
       const kafkaSet = new Set(input === '' ? [] : input.split(','))
       if (kafkaSet.size === 0) throw new Error('At least one kafka broker must be configured')
       return [...kafkaSet]
-    })({ default: 'localhost:9092' }),
+    })({ default: ['localhost:9092'] }),
     KAFKA_PAYLOAD_TOPIC: envalid.makeValidator((str) => {
       return new RegExp(str)
-    })({ default: 'raw-payloads' }),
+    })({ default: /raw-payloads/ }),
     KAFKA_PAYLOAD_ROUTING_PREFIX: envalid.str({ default: 'payloads' }),
     THINGS_SERVICE_HOST: envalid.host({ default: 'wasp-thing-service' }),
     THINGS_SERVICE_PORT: envalid.port({ default: 3000 }),
@@ -31,6 +33,6 @@ const vars = envalid.cleanEnv(
   }
 )
 
-module.exports = {
+export default {
   ...vars,
 }

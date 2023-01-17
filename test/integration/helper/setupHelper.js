@@ -1,9 +1,11 @@
-const { Kafka, logLevel: kafkaLogLevels } = require('kafkajs')
-const delay = require('delay')
-const request = require('supertest')
+import { Kafka, logLevel as kafkaLogLevels } from 'kafkajs'
+import delay from 'delay'
+import request from 'supertest'
 
-const { KAFKA_BROKERS, KAFKA_PAYLOAD_ROUTING_PREFIX } = require('../../../app/env')
-const { createHttpServer } = require('../../../app/server')
+import env from '../../../app/env.js'
+import { createHttpServer } from '../../../app/server.js'
+
+const { KAFKA_BROKERS, KAFKA_PAYLOAD_ROUTING_PREFIX } = env
 
 let apiObj = null
 const setupServer = (context) => {
@@ -86,9 +88,4 @@ const getConsumer = () => {
   }
 }
 
-module.exports = {
-  setupServer,
-  setupKafka,
-  getProducer,
-  getConsumer,
-}
+export { setupServer, setupKafka, getProducer, getConsumer }

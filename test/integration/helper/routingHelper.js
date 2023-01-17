@@ -1,23 +1,19 @@
-const { getConsumer, getProducer } = require('./setupHelper')
+import { getConsumer, getProducer } from './setupHelper.js'
 
-const that = {
-  sendRawPayloadAndWaitForRoutedPayload: async (topic, ingestId, value, waitCount = 1) => {
-    const producer = getProducer()
-    const consumer = getConsumer()
+export const sendRawPayloadAndWaitForRoutedPayload = async (topic, ingestId, value, waitCount = 1) => {
+  const producer = getProducer()
+  const consumer = getConsumer()
 
-    consumer.clearMessages()
+  consumer.clearMessages()
 
-    await producer.send({
-      topic,
-      messages: [
-        {
-          key: ingestId,
-          value,
-        },
-      ],
-    })
-    return consumer.waitForNMessages(waitCount)
-  },
+  await producer.send({
+    topic,
+    messages: [
+      {
+        key: ingestId,
+        value,
+      },
+    ],
+  })
+  return consumer.waitForNMessages(waitCount)
 }
-
-module.exports = that
