@@ -20,8 +20,4 @@ class ThingsServiceError extends Error {
   }
 }
 
-module.exports = {
-  UnknownThingError,
-  InvalidIngestIdError,
-  ThingsServiceError,
-}
+export { UnknownThingError, InvalidIngestIdError, ThingsServiceError }

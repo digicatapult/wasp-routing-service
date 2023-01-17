@@ -1,9 +1,10 @@
-const fetch = require('node-fetch')
+import fetch from 'node-fetch'
 
-const { THINGS_SERVICE_HOST, THINGS_SERVICE_PORT } = require('../env')
-const logger = require('../logger')
-const { ThingsServiceError } = require('../errors')
+import env from '../env.js'
+import logger from '../logger.js'
+import { ThingsServiceError } from '../errors.js'
 
+const { THINGS_SERVICE_HOST, THINGS_SERVICE_PORT } = env
 const apiPrefix = `http://${THINGS_SERVICE_HOST}:${THINGS_SERVICE_PORT}/v1`
 
 const getThings = async ({ ingest, ingestId }) => {
@@ -28,6 +29,4 @@ const getThings = async ({ ingest, ingestId }) => {
   }
 }
 
-module.exports = {
-  getThings,
-}
+export default { getThings }

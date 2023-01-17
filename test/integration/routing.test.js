@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
-const { describe, before, it } = require('mocha')
-const { expect } = require('chai')
+import { describe, before, it } from 'mocha'
+import { expect } from 'chai'
 
-const { setupServer, setupKafka } = require('./helper/setupHelper.js')
-const { setup: setupThings } = require('./helper/thingsMock')
-const { sendRawPayloadAndWaitForRoutedPayload } = require('./helper/routingHelper')
+import { setupServer, setupKafka } from './helper/setupHelper.js'
+import { setup as setupThings } from './helper/thingsMock.js'
+import { sendRawPayloadAndWaitForRoutedPayload } from './helper/routingHelper.js'
 
 const topic = 'raw-payloads'
 

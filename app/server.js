@@ -1,10 +1,12 @@
-const express = require('express')
-const pinoHttp = require('pino-http')
+import express from 'express'
+import pinoHttp from 'pino-http'
 
-const { PORT } = require('./env')
-const logger = require('./logger')
+import env from './env.js'
+import logger from './logger.js'
 
-const setupRawPayloadConsumer = require('./rawPayloadConsumer')
+import setupRawPayloadConsumer from './rawPayloadConsumer.js'
+
+const { PORT } = env
 
 async function createHttpServer() {
   const app = express()
@@ -60,4 +62,4 @@ async function startServer() {
   setupGracefulExit({ sigName: 'SIGTERM', server, exitCode: 143 })
 }
 
-module.exports = { startServer, createHttpServer }
+export { startServer, createHttpServer }

@@ -1,8 +1,10 @@
-const { before, after } = require('mocha')
+import { before, after } from 'mocha'
 
-const express = require('express')
+import express from 'express'
 
-const { THINGS_SERVICE_PORT } = require('../../../app/env')
+import env from '../../../app/env.js'
+
+const { THINGS_SERVICE_PORT } = env
 
 const thingsMock = [
   {
@@ -62,4 +64,4 @@ const setupThingsMock = () => {
   })
 }
 
-module.exports = { setup: setupThingsMock }
+export { setupThingsMock as setup }

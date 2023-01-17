@@ -1,4 +1,0 @@
-image:
-  repository: 'wasp-routing-service'
-  tag: 'latest'
-  PullPolicy: Never

@@ -1,5 +1,1 @@
-const things = require('./things')
-
-module.exports = {
-  things,
-}
+export { default as things } from './things.js'
