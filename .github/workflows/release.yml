@@ -200,7 +200,7 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
           file: ./Dockerfile
-          platforms: linux/amd64
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: |
             ghcr.io/${{ needs.preconditions.outputs.org_name }}/${{ needs.preconditions.outputs.repo_name }}:${{ github.sha }}
