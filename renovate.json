@@ -16,7 +16,8 @@
           "npm"
         ],
         "matchUpdateTypes": ["minor", "patch"],
-        "groupName": "npm - all non-major dependencies"
+        "groupName": "npm - all non-major dependencies",
+        "automerge": true
       },
       {
         "matchPackagePatterns": ["*"],
