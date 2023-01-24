@@ -32,16 +32,16 @@ npm test
 
 `wasp-routing-service` is configured primarily using environment variables as follows:
 
-| variable                     | required |       default        | description                                                                               |
-| :--------------------------- | :------: | :------------------: | :---------------------------------------------------------------------------------------- |
-| LOG_LEVEL                    |    N     |        `info`        | Logging level. Valid values are [`trace`, `debug`, `info`, `warn`, `error`, `fatal`]      |
-| PORT                         |    N     |        `3001`        | Port on which the service will listen                                                     |
-| KAFKA_LOG_LEVEL              |    N     |      `nothing`       | Logging level for kafkajs. Valid values are [`debug`, `info`, `warn`, `error`, `nothing`] |
-| KAFKA_BROKERS                |    N     |   `localhost:9092`   | Comma separated list of initial Kafka brokers to connect to                               |
-| KAFKA_PAYLOAD_TOPIC          |    N     |    `raw-payloads`    | Kafka topic to listen for raw payloads on                                                 |
-| KAFKA_PAYLOAD_ROUTING_PREFIX |    N     |      `payloads`      | Prefix for topic names for specific payload processor services                            |
-| THINGS_SERVICE_HOST          |    N     | `wasp-thing-service` | Hostname to connect to a deployed thing-service                                           |
-| THINGS_SERVICE_PORT          |    N     |        `3000`        | Port to connect to a deployed thing-service                                               |
+| variable                     | required |           default            | description                                                                                         |
+| :--------------------------- | :------: | :--------------------------: | :-------------------------------------------------------------------------------------------------- |
+| LOG_LEVEL                    |    N     |            `info`            | Logging level. Valid values are [`trace`, `debug`, `info`, `warn`, `error`, `fatal`]                |
+| PORT                         |    N     |            `3001`            | Port on which the service will listen                                                               |
+| KAFKA_LOG_LEVEL              |    N     |          `nothing`           | logging level for kafkajs. Valid values are [`debug`, `info`, `warn`, `error`, `nothing`]           |
+| KAFKA_BROKERS                |    N     | `PLAINTEXT://localhost:9092` | Comma separated list of initial Kafka brokers to connect to with connection protocol `PLAINTEXT://` |
+| KAFKA_PAYLOAD_TOPIC          |    N     |        `raw-payloads`        | Kafka topic to listen for raw payloads on                                                           |
+| KAFKA_PAYLOAD_ROUTING_PREFIX |    N     |          `payloads`          | Prefix for topic names for specific payload processor services                                      |
+| THINGS_SERVICE_HOST          |    N     |     `wasp-thing-service`     | Hostname to connect to a deployed thing-service                                                     |
+| THINGS_SERVICE_PORT          |    N     |            `3000`            | Port to connect to a deployed thing-service                                                         |
 
 ## Deploying WASP Routing Service on WASP-Cluster with Helm/Kubernetes
 
