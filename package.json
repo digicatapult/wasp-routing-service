@@ -1,6 +1,6 @@
 {
   "name": "@digicatapult/wasp-routing-service",
-  "version": "2.1.50",
+  "version": "2.1.51",
   "description": "",
   "main": "index.js",
   "license": "Apache-2.0",
@@ -35,7 +35,7 @@
     "c8": "^8.0.1",
     "chai": "^4.3.8",
     "delay": "^6.0.0",
-    "depcheck": "^1.4.5",
+    "depcheck": "^1.4.6",
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
