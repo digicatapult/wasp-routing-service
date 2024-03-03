@@ -1,6 +1,6 @@
 {
   "name": "@digicatapult/wasp-routing-service",
-  "version": "2.1.102",
+  "version": "2.1.103",
   "description": "",
   "main": "index.js",
   "license": "Apache-2.0",
@@ -29,7 +29,7 @@
     "kafkajs": "^2.2.4",
     "node-fetch": "^3.3.2",
     "pino": "^8.19.0",
-    "pino-http": "^8.6.1"
+    "pino-http": "^9.0.0"
   },
   "devDependencies": {
     "c8": "^8.0.1",
