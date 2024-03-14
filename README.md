@@ -1,5 +1,9 @@
 # wasp-routing-service
 
+## Deprecation Notice
+`WASP` was deprecated on March 14th 2024, there will be no further dependency or security updates to this platform.
+---
+
 Routing Service for WASP Project. This service will take payloads associated with an ingest specific id, lookup the corresponding thing and then forward the payload to the appropriate payload processor service.
 
 ## Getting started
